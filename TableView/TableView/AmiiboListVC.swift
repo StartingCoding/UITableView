@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  AmiiboListVC.swift
 //  TableView
 //
 //  Created by Loris on 13/05/21.
@@ -7,13 +7,11 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class AmiiboListVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        view.backgroundColor = .white
     }
-
-
 }
 

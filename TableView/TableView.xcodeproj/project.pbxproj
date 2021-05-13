@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		ABA1EC5E264D21500010988A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA1EC5D264D21500010988A /* AppDelegate.swift */; };
 		ABA1EC60264D21500010988A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA1EC5F264D21500010988A /* SceneDelegate.swift */; };
-		ABA1EC62264D21500010988A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA1EC61264D21500010988A /* ViewController.swift */; };
+		ABA1EC62264D21500010988A /* AmiiboListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA1EC61264D21500010988A /* AmiiboListVC.swift */; };
 		ABA1EC67264D21560010988A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABA1EC66264D21560010988A /* Assets.xcassets */; };
 		ABA1EC6A264D21560010988A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABA1EC68264D21560010988A /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -18,7 +18,7 @@
 		ABA1EC5A264D21500010988A /* TableView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TableView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABA1EC5D264D21500010988A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ABA1EC5F264D21500010988A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		ABA1EC61264D21500010988A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		ABA1EC61264D21500010988A /* AmiiboListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmiiboListVC.swift; sourceTree = "<group>"; };
 		ABA1EC66264D21560010988A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ABA1EC69264D21560010988A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ABA1EC6B264D21560010988A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -56,7 +56,7 @@
 			children = (
 				ABA1EC5D264D21500010988A /* AppDelegate.swift */,
 				ABA1EC5F264D21500010988A /* SceneDelegate.swift */,
-				ABA1EC61264D21500010988A /* ViewController.swift */,
+				ABA1EC61264D21500010988A /* AmiiboListVC.swift */,
 				ABA1EC66264D21560010988A /* Assets.xcassets */,
 				ABA1EC68264D21560010988A /* LaunchScreen.storyboard */,
 				ABA1EC6B264D21560010988A /* Info.plist */,
@@ -133,7 +133,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ABA1EC62264D21500010988A /* ViewController.swift in Sources */,
+				ABA1EC62264D21500010988A /* AmiiboListVC.swift in Sources */,
 				ABA1EC5E264D21500010988A /* AppDelegate.swift in Sources */,
 				ABA1EC60264D21500010988A /* SceneDelegate.swift in Sources */,
 			);
