@@ -10,6 +10,8 @@ import UIKit
 class AmiiboListVC: UIViewController {
     let tableView = UITableView()
     
+    let amiiboList = ["Zelda", "Link", "Navi", "Ganondorf"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,12 +40,14 @@ class AmiiboListVC: UIViewController {
 // MARK: - UITableViewDataSource
 extension AmiiboListVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 70
+        return amiiboList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellid", for: indexPath)
-        cell.textLabel?.text = "Hey! Listen!"
+        
+        let name = amiiboList[indexPath.row]
+        cell.textLabel?.text = name
         return cell
     }
 }
