@@ -13,10 +13,13 @@ class AmiiboListVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.dataSource = self
+        
         view.backgroundColor = .white
         setupView()
     }
     
+    // MARK: - Setup View
     func setupView() {
         view.addSubview(tableView)
         
@@ -30,3 +33,15 @@ class AmiiboListVC: UIViewController {
     }
 }
 
+// MARK: - UITableViewDataSource
+extension AmiiboListVC: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 70
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        cell.textLabel?.text = "Hey! Listen!"
+        return cell
+    }
+}
