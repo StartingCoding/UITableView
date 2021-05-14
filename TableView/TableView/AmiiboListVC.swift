@@ -15,6 +15,8 @@ class AmiiboListVC: UIViewController {
         
         tableView.dataSource = self
         
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellid")
+        
         view.backgroundColor = .white
         setupView()
     }
@@ -40,7 +42,7 @@ extension AmiiboListVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellid", for: indexPath)
         cell.textLabel?.text = "Hey! Listen!"
         return cell
     }
