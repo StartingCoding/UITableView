@@ -50,8 +50,8 @@ struct Amiibo: Codable {
 }
 
 struct AmiiboRelease: Codable {
-    let au: String
-    let eu: String
-    let jp: String
-    let na: String
+    let au: String?
+    let eu: String?
+    let jp: String?
+    let na: String?
 }
