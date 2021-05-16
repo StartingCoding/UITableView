@@ -58,6 +58,7 @@ extension AmiiboListVC: UITableViewDataSource {
         }
         
         amiiboCell.nameLabel.text = amiibo.name
+        amiiboCell.gameSeriesLabel.text = amiibo.gameSeries
         return cell
     }
 }

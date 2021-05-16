@@ -10,6 +10,7 @@ import UIKit
 class AmiiboCell: UITableViewCell {
     let imageIV = UIImageView()
     let nameLabel = UILabel()
+    let gameSeriesLabel = UILabel()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -24,6 +25,7 @@ class AmiiboCell: UITableViewCell {
     func setupView() {
         setupImageView()
         setupNameLabel()
+        setupGameSeriesLabel()
     }
     
     func setupImageView() {
@@ -46,6 +48,16 @@ class AmiiboCell: UITableViewCell {
         NSLayoutConstraint.activate([
             nameLabel.leadingAnchor.constraint(equalTo: imageIV.trailingAnchor, constant: 5),
             nameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 5)
+        ])
+    }
+    
+    func setupGameSeriesLabel() {
+        addSubview(gameSeriesLabel)
+        
+        gameSeriesLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            gameSeriesLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor),
+            gameSeriesLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor)
         ])
     }
 }
