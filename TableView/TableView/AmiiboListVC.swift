@@ -13,13 +13,8 @@ class AmiiboListVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        tableView.dataSource = self
-        
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellid")
-        
         view.backgroundColor = .white
-        setupView()
+        setupTableView()
         
         let anonymousFunction = { (amiiboFetched: [Amiibo]) in
             DispatchQueue.main.async {
@@ -27,12 +22,16 @@ class AmiiboListVC: UIViewController {
                 self.tableView.reloadData()
             }
         }
+        
         AmiiboAPI.shared.fetchAmiiboList(onCompletion: anonymousFunction)
     }
     
-    // MARK: - Setup View
-    func setupView() {
+    // MARK: - Setup
+    func setupTableView() {
         view.addSubview(tableView)
+        
+        tableView.dataSource = self
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellid")
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
