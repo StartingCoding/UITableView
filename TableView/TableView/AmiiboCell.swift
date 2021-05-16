@@ -49,6 +49,8 @@ class AmiiboCell: UITableViewCell {
             nameLabel.leadingAnchor.constraint(equalTo: imageIV.trailingAnchor, constant: 5),
             nameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 5)
         ])
+        
+        nameLabel.font = UIFont(name: "Verdana-Bold", size: 16)
     }
     
     func setupGameSeriesLabel() {
@@ -59,5 +61,7 @@ class AmiiboCell: UITableViewCell {
             gameSeriesLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor),
             gameSeriesLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor)
         ])
+        
+        gameSeriesLabel.font = UIFont(name: "Verdana", size: 14)
     }
 }
