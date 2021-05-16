@@ -8,7 +8,7 @@
 import UIKit
 
 class AmiiboCell: UITableViewCell {
-    let imageIV = UIImageView()
+    let imageIV = CustomImageView()
     let nameLabel = UILabel()
     let gameSeriesLabel = UILabel()
     
@@ -38,7 +38,6 @@ class AmiiboCell: UITableViewCell {
             imageIV.widthAnchor.constraint(equalToConstant: 40),
             imageIV.heightAnchor.constraint(equalToConstant: 40)
         ])
-        imageIV.backgroundColor = .red
     }
     
     func setupNameLabel() {

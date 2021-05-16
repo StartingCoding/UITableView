@@ -59,6 +59,9 @@ extension AmiiboListVC: UITableViewDataSource {
         
         amiiboCell.nameLabel.text = amiibo.name
         amiiboCell.gameSeriesLabel.text = amiibo.gameSeries
+        if let url = URL(string: amiibo.image) {
+            amiiboCell.imageIV.loadImage(from: url)
+        }
         return cell
     }
 }
