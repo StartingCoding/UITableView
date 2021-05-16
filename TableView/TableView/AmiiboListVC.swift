@@ -21,6 +21,8 @@ class AmiiboListVC: UIViewController {
         
         view.backgroundColor = .white
         setupView()
+        
+        AmiiboAPI.shared.fetchAmiiboList()
     }
     
     // MARK: - Setup View

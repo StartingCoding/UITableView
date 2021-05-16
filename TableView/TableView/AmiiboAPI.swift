@@ -8,6 +8,9 @@
 import Foundation
 
 final class AmiiboAPI {
+    
+    static let shared = AmiiboAPI()
+    
     func fetchAmiiboList() {
         let urlString = "https://www.amiiboapi.com/api/amiibo"
         let url = URL(string: urlString)!
