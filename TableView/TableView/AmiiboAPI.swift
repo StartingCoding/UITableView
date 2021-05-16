@@ -11,7 +11,7 @@ final class AmiiboAPI {
     
     static let shared = AmiiboAPI()
     
-    func fetchAmiiboList() {
+    func fetchAmiiboList(onCompletion: @escaping ([Amiibo]) -> ()) {
         let urlString = "https://www.amiiboapi.com/api/amiibo"
         let url = URL(string: urlString)!
         
@@ -26,7 +26,7 @@ final class AmiiboAPI {
                 return
             }
             
-            print(amiiboList.amiibo)
+            onCompletion(amiiboList.amiibo)
         }
         
         task.resume()
