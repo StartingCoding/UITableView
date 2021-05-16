@@ -31,7 +31,7 @@ class AmiiboListVC: UIViewController {
         view.addSubview(tableView)
         
         tableView.dataSource = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellid")
+        tableView.register(AmiiboCell.self, forCellReuseIdentifier: "cellid")
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -52,7 +52,13 @@ extension AmiiboListVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellid", for: indexPath)
         let amiibo = amiiboList[indexPath.row]
-        cell.textLabel?.text = amiibo.name
+        
+        guard let amiiboCell = cell as? AmiiboCell else {
+            return cell
+        }
+        
+        amiiboCell.nameLabel.text = amiibo.name
+        amiiboCell.gameSeriesLabel.text = amiibo.gameSeries
         return cell
     }
 }
