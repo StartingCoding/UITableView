@@ -8,9 +8,19 @@
 import UIKit
 
 class CustomImageView: UIImageView {
+    // Global variable to hold the dataTask
+    var task: URLSessionDataTask!
     
     func loadImage(from url: URL) {
-        let task = URLSession.shared.dataTask(with: url) { (data, resp, error) in
+        // Override the previous image to blank space
+        image = nil
+        
+        // If there was a dataTask that was already doing stuff, just cancel it
+        if let task = task {
+            task.cancel()
+        }
+        
+        task = URLSession.shared.dataTask(with: url) { (data, resp, error) in
             
             guard
                 let data = data,
