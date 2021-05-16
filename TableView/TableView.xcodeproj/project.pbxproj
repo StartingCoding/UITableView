@@ -12,6 +12,7 @@
 		ABA1EC62264D21500010988A /* AmiiboListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA1EC61264D21500010988A /* AmiiboListVC.swift */; };
 		ABA1EC67264D21560010988A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABA1EC66264D21560010988A /* Assets.xcassets */; };
 		ABA1EC6A264D21560010988A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABA1EC68264D21560010988A /* LaunchScreen.storyboard */; };
+		ABB7EBD826511CDA009F33DF /* AmiiboAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB7EBD726511CDA009F33DF /* AmiiboAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		ABA1EC66264D21560010988A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ABA1EC69264D21560010988A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ABA1EC6B264D21560010988A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ABB7EBD726511CDA009F33DF /* AmiiboAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmiiboAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 				ABA1EC5D264D21500010988A /* AppDelegate.swift */,
 				ABA1EC5F264D21500010988A /* SceneDelegate.swift */,
 				ABA1EC61264D21500010988A /* AmiiboListVC.swift */,
+				ABB7EBD726511CDA009F33DF /* AmiiboAPI.swift */,
 				ABA1EC66264D21560010988A /* Assets.xcassets */,
 				ABA1EC68264D21560010988A /* LaunchScreen.storyboard */,
 				ABA1EC6B264D21560010988A /* Info.plist */,
@@ -134,6 +137,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABA1EC62264D21500010988A /* AmiiboListVC.swift in Sources */,
+				ABB7EBD826511CDA009F33DF /* AmiiboAPI.swift in Sources */,
 				ABA1EC5E264D21500010988A /* AppDelegate.swift in Sources */,
 				ABA1EC60264D21500010988A /* SceneDelegate.swift in Sources */,
 			);

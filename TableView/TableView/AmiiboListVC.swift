@@ -9,23 +9,29 @@ import UIKit
 
 class AmiiboListVC: UIViewController {
     let tableView = UITableView()
-    
-    let amiiboList = ["Zelda", "Link", "Navi", "Ganondorf"]
+    var amiiboList = [Amiibo]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        tableView.dataSource = self
-        
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellid")
-        
         view.backgroundColor = .white
-        setupView()
+        setupTableView()
+        
+        let anonymousFunction = { (amiiboFetched: [Amiibo]) in
+            DispatchQueue.main.async {
+                self.amiiboList = amiiboFetched
+                self.tableView.reloadData()
+            }
+        }
+        
+        AmiiboAPI.shared.fetchAmiiboList(onCompletion: anonymousFunction)
     }
     
-    // MARK: - Setup View
-    func setupView() {
+    // MARK: - Setup
+    func setupTableView() {
         view.addSubview(tableView)
+        
+        tableView.dataSource = self
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellid")
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -45,9 +51,8 @@ extension AmiiboListVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellid", for: indexPath)
-        
-        let name = amiiboList[indexPath.row]
-        cell.textLabel?.text = name
+        let amiibo = amiiboList[indexPath.row]
+        cell.textLabel?.text = amiibo.name
         return cell
     }
 }
