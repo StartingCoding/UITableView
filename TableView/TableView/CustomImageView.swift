@@ -12,10 +12,13 @@ let imageCache = NSCache<AnyObject, AnyObject>()
 class CustomImageView: UIImageView {
     // Global variable to hold the dataTask
     var task: URLSessionDataTask!
+    let spinner = UIActivityIndicatorView(style: .medium)
     
     func loadImage(from url: URL) {
         // Override the previous image to blank space
         image = nil
+        
+        addSpinner()
         
         // If there was a dataTask that was already doing stuff, just cancel it
         if let task = task {
@@ -24,7 +27,8 @@ class CustomImageView: UIImageView {
         
         // If the image from the url is in the Cache use that instead
         if let imageFromCache = imageCache.object(forKey: url.absoluteString as AnyObject) as? UIImage {
-            self.image = imageFromCache
+            image = imageFromCache
+            removeSpinner()
             return
         }
         
@@ -43,9 +47,26 @@ class CustomImageView: UIImageView {
             
             DispatchQueue.main.async {
                 self.image = newImage
+                self.removeSpinner()
             }
         }
         
         task.resume()
+    }
+    
+    func addSpinner() {
+        addSubview(spinner)
+        
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            spinner.centerYAnchor.constraint(equalTo: centerYAnchor),
+            spinner.centerXAnchor.constraint(equalTo: centerXAnchor)
+        ])
+        
+        spinner.startAnimating()
+    }
+    
+    func removeSpinner() {
+        spinner.removeFromSuperview()
     }
 }
