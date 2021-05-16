@@ -31,7 +31,7 @@ class AmiiboListVC: UIViewController {
         view.addSubview(tableView)
         
         tableView.dataSource = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellid")
+        tableView.register(AmiiboCell.self, forCellReuseIdentifier: "cellid")
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
