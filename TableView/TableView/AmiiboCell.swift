@@ -9,6 +9,7 @@ import UIKit
 
 class AmiiboCell: UITableViewCell {
     let imageIV = UIImageView()
+    let nameLabel = UILabel()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -22,6 +23,7 @@ class AmiiboCell: UITableViewCell {
     // MARK: Setup
     func setupView() {
         setupImageView()
+        setupNameLabel()
     }
     
     func setupImageView() {
@@ -35,5 +37,15 @@ class AmiiboCell: UITableViewCell {
             imageIV.heightAnchor.constraint(equalToConstant: 40)
         ])
         imageIV.backgroundColor = .red
+    }
+    
+    func setupNameLabel() {
+        addSubview(nameLabel)
+        
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            nameLabel.leadingAnchor.constraint(equalTo: imageIV.trailingAnchor, constant: 5),
+            nameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 5)
+        ])
     }
 }
