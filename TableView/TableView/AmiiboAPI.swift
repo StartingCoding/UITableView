@@ -7,7 +7,28 @@
 
 import Foundation
 
-final class AmiiboAPI {}
+final class AmiiboAPI {
+    func fetchAmiiboList() {
+        let urlString = "https://www.amiiboapi.com/api/amiibo"
+        let url = URL(string: urlString)!
+        
+        let task = URLSession.shared.dataTask(with: url) { (data, resp, error) in
+            guard let data = data else {
+                print("Data was nil")
+                return
+            }
+            
+            guard let amiiboList = try? JSONDecoder().decode(AmiiboList.self, from: data) else {
+                print("Couldn't decode form JSON")
+                return
+            }
+            
+            print(amiiboList.amiibo)
+        }
+        
+        task.resume()
+    }
+}
 
 struct AmiiboList: Codable {
     let amiibo: [Amiibo]
