@@ -30,6 +30,7 @@ class AmiiboCell: UITableViewCell {
     
     func setupImageView() {
         addSubview(imageIV)
+        imageIV.contentMode = .scaleAspectFit
         
         imageIV.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
