@@ -30,8 +30,9 @@ class AmiiboListVC: UIViewController {
     func setupTableView() {
         view.addSubview(tableView)
         
-        tableView.dataSource = self
         tableView.register(AmiiboCell.self, forCellReuseIdentifier: "cellid")
+        tableView.dataSource = self
+        tableView.delegate = self
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -63,5 +64,24 @@ extension AmiiboListVC: UITableViewDataSource {
             amiiboCell.imageIV.loadImage(from: url)
         }
         return cell
+    }
+}
+
+// MARK: - UITableViewDelegate
+extension AmiiboListVC: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
+            
+            if self.amiiboList[indexPath.row].name == "Luigi" {
+                completionHandler(false)
+            } else {
+                self.amiiboList.remove(at: indexPath.row)
+                self.tableView.deleteRows(at: [indexPath], with: .automatic)
+                completionHandler(true)
+            }
+        }
+        
+        return UISwipeActionsConfiguration(actions: [deleteAction])
     }
 }
