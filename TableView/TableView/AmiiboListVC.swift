@@ -69,5 +69,15 @@ extension AmiiboListVC: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 extension AmiiboListVC: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
+            
+            self.amiiboList.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            completionHandler(true)
+        }
+        
+        return UISwipeActionsConfiguration(actions: [deleteAction])
+    }
 }
