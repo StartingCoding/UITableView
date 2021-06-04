@@ -30,8 +30,9 @@ class AmiiboListVC: UIViewController {
     func setupTableView() {
         view.addSubview(tableView)
         
-        tableView.dataSource = self
         tableView.register(AmiiboCell.self, forCellReuseIdentifier: "cellid")
+        tableView.dataSource = self
+        tableView.delegate = self
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -64,4 +65,9 @@ extension AmiiboListVC: UITableViewDataSource {
         }
         return cell
     }
+}
+
+// MARK: - UITableViewDelegate
+extension AmiiboListVC: UITableViewDelegate {
+    
 }
