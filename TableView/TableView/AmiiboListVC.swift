@@ -73,9 +73,13 @@ extension AmiiboListVC: UITableViewDelegate {
         
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
             
-            self.amiiboList.remove(at: indexPath.row)
-            self.tableView.deleteRows(at: [indexPath], with: .automatic)
-            completionHandler(true)
+            if self.amiiboList[indexPath.row].name == "Luigi" {
+                completionHandler(false)
+            } else {
+                self.amiiboList.remove(at: indexPath.row)
+                self.tableView.deleteRows(at: [indexPath], with: .automatic)
+                completionHandler(true)
+            }
         }
         
         return UISwipeActionsConfiguration(actions: [deleteAction])
