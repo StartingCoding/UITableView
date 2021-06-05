@@ -11,6 +11,7 @@ class AmiiboCell: UITableViewCell {
     let imageIV = CustomImageView()
     let nameLabel = UILabel()
     let gameSeriesLabel = UILabel()
+    let owningCountLabel = UILabel()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -23,9 +24,20 @@ class AmiiboCell: UITableViewCell {
     
     // MARK: Setup
     func setupView() {
+        setupOwningCountingLabel()
         setupImageView()
         setupNameLabel()
         setupGameSeriesLabel()
+    }
+    
+    func setupOwningCountingLabel() {
+        addSubview(owningCountLabel)
+        
+        owningCountLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            owningCountLabel.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
+            owningCountLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
+        ])
     }
     
     func setupImageView() {
@@ -34,7 +46,7 @@ class AmiiboCell: UITableViewCell {
         
         imageIV.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            imageIV.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
+            imageIV.leadingAnchor.constraint(equalTo: owningCountLabel.trailingAnchor, constant: 5),
             imageIV.centerYAnchor.constraint(equalTo: centerYAnchor),
             imageIV.widthAnchor.constraint(equalToConstant: 40),
             imageIV.heightAnchor.constraint(equalToConstant: 40)
