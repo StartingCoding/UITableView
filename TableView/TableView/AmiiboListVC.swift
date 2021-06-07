@@ -9,16 +9,24 @@ import UIKit
 
 class AmiiboListVC: UIViewController {
     let tableView = UITableView()
-    var amiiboList = [Amiibo]()
+    var amiiboList = [AmiiboForView]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupTableView()
         
-        let anonymousFunction = { (amiiboFetched: [Amiibo]) in
+        let anonymousFunction = { (fetchedAmiiboList: [Amiibo]) in
             DispatchQueue.main.async {
-                self.amiiboList = amiiboFetched
+                let amiiboForListView = fetchedAmiiboList.map { amiibo in
+                    return AmiiboForView(
+                        name: amiibo.name,
+                        gameSeries: amiibo.gameSeries,
+                        imageUrl: amiibo.image,
+                        count: 0
+                    )
+                }
+                self.amiiboList = amiiboForListView
                 self.tableView.reloadData()
             }
         }
@@ -60,7 +68,8 @@ extension AmiiboListVC: UITableViewDataSource {
         
         amiiboCell.nameLabel.text = amiibo.name
         amiiboCell.gameSeriesLabel.text = amiibo.gameSeries
-        if let url = URL(string: amiibo.image) {
+        amiiboCell.owningCountLabel.text = String(amiibo.count)
+        if let url = URL(string: amiibo.imageUrl) {
             amiiboCell.imageIV.loadImage(from: url)
         }
         return cell
