@@ -93,4 +93,22 @@ extension AmiiboListVC: UITableViewDelegate {
         
         return UISwipeActionsConfiguration(actions: [deleteAction])
     }
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let countAction = UIContextualAction(style: .normal, title: "Count up") { (action, view, completionHandler) in
+            
+            // Update Data Layer
+            self.amiiboList[indexPath.row].count += 1
+            
+            // Update Presentation Layer
+            if let cell = tableView.cellForRow(at: indexPath) as? AmiiboCell {
+                cell.owningCountLabel.text = String(self.amiiboList[indexPath.row].count)
+            }
+            
+            completionHandler(true)
+        }
+        
+        return UISwipeActionsConfiguration(actions: [countAction])
+    }
 }
