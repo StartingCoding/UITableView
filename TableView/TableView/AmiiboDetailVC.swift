@@ -8,5 +8,11 @@
 import UIKit
 
 class AmiiboDetailVC: UIViewController {
+    var amiibo: AmiiboForView?
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = .green
+    }
 }
