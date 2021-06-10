@@ -12,6 +12,7 @@ class AmiiboDetailVC: UIViewController {
     
     let imageIV = CustomImageView()
     let nameLabel = UILabel()
+    let dismissButton = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +20,7 @@ class AmiiboDetailVC: UIViewController {
         
         setupImage()
         setupName()
+        setupDismissButton()
         setupData()
     }
     
@@ -46,11 +48,28 @@ class AmiiboDetailVC: UIViewController {
         ])
     }
     
+    func setupDismissButton() {
+        view.addSubview(dismissButton)
+        dismissButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            dismissButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
+            dismissButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+        
+        dismissButton.setTitle("Dismiss", for: .normal)
+        dismissButton.addTarget(self, action: #selector(dismissAction), for: .touchUpInside)
+    }
+    
     func setupData() {
         if let amiibo = amiibo,
            let url = URL(string: amiibo.imageUrl) {
             imageIV.loadImage(from: url)
             nameLabel.text = amiibo.name
         }
+    }
+    
+    @objc func dismissAction() {
+        self.dismiss(animated: true)
     }
 }
