@@ -111,4 +111,11 @@ extension AmiiboListVC: UITableViewDelegate {
         
         return UISwipeActionsConfiguration(actions: [countAction])
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let amiibo = self.amiiboList[indexPath.row]
+        let amiiboDetailVC = AmiiboDetailVC()
+        amiiboDetailVC.amiibo = amiibo
+        self.present(amiiboDetailVC, animated: true)
+    }
 }
