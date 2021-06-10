@@ -11,12 +11,14 @@ class AmiiboDetailVC: UIViewController {
     var amiibo: AmiiboForView?
     
     let imageIV = CustomImageView()
+    let nameLabel = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .green
+        view.backgroundColor = .black
         
         setupImage()
+        setupName()
         setupData()
     }
     
@@ -33,10 +35,22 @@ class AmiiboDetailVC: UIViewController {
         ])
     }
     
+    func setupName() {
+        view.addSubview(nameLabel)
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        nameLabel.textColor = .white
+        
+        NSLayoutConstraint.activate([
+            nameLabel.topAnchor.constraint(equalTo: imageIV.bottomAnchor, constant: 10),
+            nameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+        ])
+    }
+    
     func setupData() {
         if let amiibo = amiibo,
            let url = URL(string: amiibo.imageUrl) {
             imageIV.loadImage(from: url)
+            nameLabel.text = amiibo.name
         }
     }
 }
