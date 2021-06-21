@@ -239,3 +239,67 @@ final class AmiiboAPI {
 }
 ```
 
+## Custom ImageView
+
+We can subclass an ImageView so we can customized it so it can have features like loading an image from the cache or from a URL meanwhile having a spinner indicating is loding it.
+
+```
+let imageCache = NSCache<AnyObject, AnyObject>()
+
+class CustomImageView: UIImageView {
+    var task: URLSessionDataTask!
+    let spinner: UIActivityIndicator(style: .medium)
+
+    func loadImage(from url: URL) {
+        image = nil
+
+        addSpinner()
+
+        if let task = task {
+            task.cancel()
+        }
+
+        if let imageFromCache = imageCache.object(forKey: url.absoluteString as AnyObject) else {
+            image = imageFromCache
+            removeSpinner()
+            return
+        }
+
+        task = URLSession.dataTask(with: url) { (data, resp, error) in
+
+            guard
+                let data = data,
+                let newImage = UIImage(data: data)
+            else {
+                print("Couldn't load image from url: \(url)")
+                return
+            }
+
+            imageCache.setObject(newImage, forKey: url.absoluteString as AnyObject)
+
+            DispatchQueue.main.async {
+                self.image = newImage
+                self.removeSpinner()
+            }
+        }
+
+        task.resume()
+    }
+
+    func addSpinner() {
+        addSubview(spinner)
+
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            spinner.centerXAnchor.constraint(equalTo: centerXAnchor),
+            spinner.centerYAnchor.constraint(equalTo: centerYAnchor)
+        ])
+
+        spinner.startAnimating()
+    }
+
+    func removeSpinner() {
+        spinner.removeFromSuperview()
+    }
+}
+```
