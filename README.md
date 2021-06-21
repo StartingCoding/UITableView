@@ -7,6 +7,7 @@ This is an app made following the [tutorial](https://youtube.com/playlist?list=P
 </p>
 
 ## Delete Storyboard
+
 Delete Storyboard.main
 
 Delete Reference to Main in General > Deployment Info > Main Interface
@@ -87,3 +88,103 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidEnterBackground(_ scene: UIScene) {}
 }
 ```
+
+## Build the UITableViewController
+
+The AmiiboListVC is a UIViewController with a UITableView object representing the view and the viewDidLoad method is used to configure the view managed by the view controller.
+
+```
+class AmiiboListVC: UIViewController {
+    let tableView = UITableView()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .white
+        setupTableView()
+    }
+
+    // MARK: - Setup
+    func setupTableView() {
+        view.addSubview(tableView)
+
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.bottomAnchor.constraint(equaltTo: view.bottomAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+    }
+}
+```
+
+## TableViewDataSource
+
+The AmiiboListVC can conform to the UITableViewDataSource protocol so it can displays some data in some rows.
+
+```
+// MARK: - UITableViewDataSouce
+extension AmiiboListVC: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 70
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        cell.textLabel?.text = "Hey! Listen!"
+        return cell
+    }
+}
+```
+
+We need to assing the view controller as a data source of the table view `tableView.dataSource = self`
+
+The optimization of the cell is done using a reusable cell `let cell = tableView.dequeueReusableCell(withIdentifier: "cellid", for: indexPath)`
+
+## TableViewDelegate
+
+The AmiiboListVC can conform to the UITableViewDelegate protocol so it can enable some sort of actions like swiping and presenting some other views from touching a row.
+
+```
+extension AmiiboListVC: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailViewController = UIViewController()
+        self.present(detailViewController, animated: true)
+    }
+}
+```
+
+We need to assign the view controller as a delegate of the table view `tableView.delegate = self`
+
+## AmiiboAPI
+
+To download some data from an API we a data task from an URLSession.
+
+```
+final class AmiiboAPI {
+
+    static let shared = AmiiboAPI()
+
+    func fetchAmiiboList(onCompletion: @escaping ([Amiibo] -> ())) {
+        let urlString = "https://www.amiiboapi.com/api/amiibo"
+        let url = URL(string: urlString)!
+
+        let task = URLSession.shared.dataTask(with: url) { (data, resp, error) in
+            guard let data = data else {
+                print("Data was nil")
+                return
+            }
+
+            guard let amiiboList = try? JSONDecoder().decode(AmiiboList.self, from: data) else {
+                print("Couldn't decode from JSON")
+                return
+            }
+
+            onCompletion(amiiboList.amiibo)
+        }
+
+        task.resume()
+    }
+}
+```
+
