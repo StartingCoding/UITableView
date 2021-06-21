@@ -156,6 +156,57 @@ extension AmiiboListVC: UITableViewDelegate {
 
 We need to assign the view controller as a delegate of the table view `tableView.delegate = self`
 
+## Custom UITableViewCell
+
+We can create a custom cell subclassing a UITableViewCell.
+
+```
+class AmiiboCell: UITableViewCell {
+    let nameLabel = UILabel()
+    let gameSeriesLabel = UILabel()
+    let owningCountLabel = UILabel()
+
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupView()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder) has not been implemented")
+    }
+
+    // MARK: Setup
+    func setupView() {
+        setupOwningCountingLabel()
+        setupImageView()
+        setupNameLabel()
+        setupGameSeriesLabel()
+    }
+
+    func setupOwningCountingLabel() {
+        addSubview(owningCountLabel)
+
+        owningCountLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraints.activate([
+            owningCountingLabel.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
+            owningCountingLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
+        ])
+    }
+
+    func setupImageView() {
+        ...
+    }
+
+    func setupNameLabel() {
+        ...
+    }
+
+    func setupGameSeriesLabel() {
+        ...
+    }
+}
+```
+
 ## AmiiboAPI
 
 To download some data from an API we a data task from an URLSession.
