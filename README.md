@@ -2,7 +2,9 @@
 
 This is an app made following the [tutorial](https://youtube.com/playlist?list=PLJbKhtS4qyYR7WSqTs5V0B0xx3iH7_Iyo) created by Martin Lasek on creating a UITableView without the use of storyboards.
 
-<img src="asset/uitableview.gif" alt="An app represeting a table view with rows of amiibos, touching a row would present a detail view and swiping a row would present on the left a count up action and on right a delete action">
+<p align="center">
+    <img src="asset/uitableview.gif" alt="An app represeting a table view with rows of amiibos, touching a row would present a detail view and swiping a row would present on the left a count up action and on right a delete action">
+</p>
 
 ## Delete Storyboard
 Delete Storyboard.main
@@ -34,7 +36,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 On iOS 13 the AppDelegate should look like this:
 ```
-@main class AppDelegate: UIResponder, UIApplicationDelegate {
+@main
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishingLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey:Any]) -> Bool {
         return true
